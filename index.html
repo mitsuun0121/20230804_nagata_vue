@@ -1,0 +1,76 @@
+<!--切り替えタブ-->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>切り替えタブ</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <div class="tab">
+      <ul class="tabnav">
+        <li @click="select('1')" v-bind:class="{'active': show == '1'}">タブ1</li>
+        <li @click="select('2')" v-bind:class="{'active': show == '2'}">タブ2</li>
+        <li @click="select('3')" v-bind:class="{'active': show == '3'}">タブ3</li>
+      </ul>
+    </div>
+
+    <div class="content">
+      <div v-if="show == '1'" class="content-list">コンテンツ1</div>
+      <div v-if="show == '2'" class="content-list">コンテンツ2</div>
+      <div v-if="show == '3'" class="content-list">コンテンツ3</div>
+    </div>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data() {
+        return {
+          show: "1",
+        }
+      },
+      methods: {
+        select: function(num){
+          this.show = num;
+        }
+      }
+    });
+  </script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .tabnav {
+      display: flex;
+      margin: 0 auto;
+      list-style-type: none;
+      
+    }
+
+    .tabnav li {
+      background: #fff;
+      color: #333;
+      padding: 10px 30px;
+      text-decoration: none;
+      border: 1px solid #333;
+    }
+
+    .tabnav li.active {
+      background: #333;
+      color: #fff;
+    }
+
+    .content {
+      padding: 10px 30px;
+    }
+  </style>
+
+</body>
+</html>

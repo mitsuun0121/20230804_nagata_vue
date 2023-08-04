@@ -1,0 +1,59 @@
+<!--リアルタイム検索-->
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>リアルタイム検索</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <input v-model="searchKeyword" placeholder="">
+    <ul>
+      <li v-for="name in filteredNames" :key="name">{{ name }}</li>
+    </ul>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data() {
+        return {
+          names: ['佐藤', '山田', '鈴木', '田中'],
+          searchKeyword: ''
+        }
+      },
+      computed: {
+        filteredNames() {
+          return this.names.filter(name => name.includes(this.searchKeyword));
+        }
+      }
+    });
+  </script>
+
+  <style>
+    input {
+      width: 200px;
+      color: #333;
+      padding: 5px;
+      border: 3px solid #51b454;
+      border-radius: 5px;
+      background-color: #fff;
+    }
+
+    ul {
+      margin: auto;
+      padding: inherit;
+    }
+
+    li {
+      list-style-type: none;
+    }
+  </style>
+  
+</body>
+</html>
